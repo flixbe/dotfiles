@@ -1,0 +1,34 @@
+!xrdb .Xresources
+
+URxvt.font: xft:Fira Mono:size=8,style=regular
+URxvt.loginShell: true
+URxvt.scrollBar: false
+
+URxvt*background:  #212121
+URxvt*foreground:  #FAFAFA
+URxvt*cursorColor: #ECEFF1
+
+! Gray
+URxvt*color0: #212121
+URxvt*color8: #263238
+! Red
+URxvt*color1: #D50000
+URxvt*color9: #D50000
+! Green
+URxvt*color2:  #00C853
+URxvt*color10: #00C853
+! Yellow
+URxvt*color3:  #FFD600
+URxvt*color11: #FFD600
+! Blue
+URxvt*color4:  #0091EA
+URxvt*color12: #0091EA
+! Purple
+URxvt*color5:  #AA00FF
+URxvt*color13: #AA00FF
+! Teal
+URxvt*color6:  #00BFA5
+URxvt*color14: #00BFA5
+! White
+URxvt*color7:  #FAFAFA
+URxvt*color15: #FAFAFA
