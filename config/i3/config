@@ -1,0 +1,174 @@
+# i3 config file
+set $mod Mod4
+
+# Font for window titles.
+font pango:FiraMono 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Start a terminal
+bindsym $mod+Return exec urxvt
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Start a program launcher
+bindsym $mod+d exec rofi -show drun
+
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# Change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+h split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Change focus between tiling / floating windows
+bindsym $mod+Tab focus mode_toggle
+
+# Toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# Focus the parent container
+#bindsym $mod+a focus parent
+
+# Focus the child container
+#bindsym $mod+d focus child
+
+set $background-color          #004D40
+set $inactive-background-color #212121
+set $urgent-background-color   #B71C1C
+set $text-color                #FAFAFA
+set $inactive-text-color       #BDBDBD
+set $indicator-color           #1B5E20
+set $separator-color           #263238 
+
+set $workspace1 "1:Browser "
+set $workspace2 "2:Editor "
+set $workspace3 "3:Console "
+set $workspace4 "4:Spotify "
+set $workspace5 "5:Telegram "
+set $workspace6 "6:Discord "
+set $workspace7 "7:Steam "
+set $workspace8 "8:Skype "
+set $workspace9 "9:Slack "
+set $workspace10 "10:Reader "
+
+# Switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+assign [class="Google-chrome"] $workspace1
+assign [class="Code"] $workspace2
+assign [class="jetbrains-idea"] $workspace2
+assign [class="jetbrains-pycharm"] $workspace2
+assign [class="jetbrains-rubymine"] $workspace2
+assign [class="jetbrains-clion"] $workspace2
+assign [class="Spotify"] $workspace4
+assign [class="Telegram"] $workspace5
+assign [class="discord"] $workspace6
+
+for_window [class="URxvt"] floating enable
+for_window [class="Spotify"] floating enable
+for_window [class="Telegram"] floating enable
+for_window [class="discord"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="Pavucontrol"] floating enable
+
+# Reload the configuration file
+# bindsym $mod+Shift+c reload
+
+# Restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# Exit i3
+bindsym $mod+Ctrl+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'"
+
+# Resize window
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Back to normal
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# window colors         border                     background                 text                 indicator        child_border
+client.focused          $background-color          $background-color          $text-color          $indicator-color $inactive-background-color
+client.focused_inactive $inactive-background-color $inactive-background-color $inactive-text-color $indicator-color $inactive-background-color
+client.unfocused        $inactive-background-color $inactive-background-color $inactive-text-color $indicator-color $inactive-background-color
+client.urgent           $urgent-background-color   $urgent-background-color   $text-color          $indicator-color $inactive-background-color
+
+# Hide indicator line
+hide_edge_borders both
+
+bar {
+        position top
+        status_command i3blocks
+        colors {
+                # window           border                     background                 text
+                focused_workspace  $background-color          $background-color          $text-color
+                inactive_workspace $inactive-background-color $inactive-background-color $inactive-text-color
+                urgent_workspace   $urgent-background-color   $urgent-background-color   $text-color
+                background         $inactive-background-color
+                separator          $separator-color
+        }
+}
+
+# Key bindings
+bindsym $mod+l exec i3lock -c "$background-color"
+bindsym --release Print exec scrot
+bindsym --release Shift+Print exec "scrot -s %s_%H%M_%d%m%Y_$wx$h.png"
+
+# Keyboard layout
+exec_always "setxkbmap -layout us,ua -option grp:alt_shift_toggle"
+
+# Startup programs
+exec_always compton -f
+exec_always feh --bg-scale /home/lorex/Walls/wallpaper.png
