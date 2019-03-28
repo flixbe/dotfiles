@@ -1,0 +1,11 @@
+{
+    
+    "workbench.startupEditor": "newUntitledFile",
+    "files.autoSave": "onFocusChange",
+    "editor.renderWhitespace": "all",
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.fontFamily": "Fira Mono",
+    "editor.fontSize": 13,
+    "editor.wordWrapColumn": 100,
+}
