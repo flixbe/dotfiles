@@ -7,10 +7,14 @@ function delete() {
 }
 
 function install() {
-    echo "Installing new $3 config"
-    echo $1 "-> "$2
+    echo "Installing" $1 "-> "$2
     ln $1 $2
     echo "$3 config successfully installed!"
+}
+
+function copy() {
+    echo "Copying $2 -> /home/$USER/backup/ folder."
+    cp $1 /home/$USER/backup/
 }
 
 function deleting() {
@@ -37,6 +41,23 @@ function installing() {
     install ~/dotfiles/home/.Xresources ~/.Xresources .Xresources
 }
 
+function backup() {
+    echo "Making backup"
+    if [ ! -d /home/$USER/backup ]; then
+        mkdir -p /home/$USER/backup
+    fi
+
+    copy ~/.config/i3/config i3config
+    copy ~/.config/neofetch/config.conf neofetch
+    copy ~/.emacs emacs
+    copy ~/.config/Code/$USER/vscode.json vscode
+    copy ~/.gemrc .gemrc
+    copy ~/.vimrc .vimrc
+    copy ~/.bashrc .bashrc
+    copy ~/.zshrc .zshrc
+    copy ~/.Xresources .Xresources
+}
+
 function default() {
     echo "Deleting old configs"
     deleting
@@ -46,16 +67,13 @@ function default() {
 }
 
 function custom() {
+    echo "This option not available yet"
     # TODO: implement
 }
 
 function minimal() {
     install ~/dotfiles/home/.zshrc ~/.zshrc zshrc
     install ~/dotfiles/vim/.vimrc ~/.vimrc vimrc
-}
-
-function backup() {
-    # TODO: implement
 }
 
 echo "Dotfiles install wizard"
