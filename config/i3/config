@@ -14,9 +14,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+q kill
 
 # Start a program launcher
-bindsym $mod+d exec rofi -show drun
-
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+space exec rofi -show drun
 
 # Change focus
 bindsym $mod+Left focus left
@@ -48,7 +46,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Tab focus mode_toggle
 
 # Toggle tiling / floating
-bindsym $mod+space floating toggle
+bindsym $mod+f floating toggle
 
 # Focus the parent container
 #bindsym $mod+a focus parent
