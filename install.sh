@@ -76,29 +76,49 @@ function minimal() {
     install ~/dotfiles/vim/.vimrc ~/.vimrc vimrc
 }
 
-echo "Dotfiles install wizard"
-echo "__________________________"
-echo "Pick what you want to do:"
-echo "[1] Default install"
-echo "[2] Custom install"
-echo "[3] Minimal install"
-echo "[4] Delete all old configs"
-echo "[5] Make backup"
-echo "[0] Exit"
-read -p "By default - 1: " input
+function init() {
+    if [[ $1 == "-d" || $1 == "--default" ]]; then
+        default
+    elif [[ $1 == "-c" || $1 == "--custom" ]]; then
+        custom
+    elif [[ $1 == "-m" || $1 == "--minimal" ]]; then
+        minimal
+    elif [[ $1 == "-r" || $1 == "--remove" ]]; then
+        deleting
+    elif [[ $1 == "-b" || $1 == "--backup" ]]; then
+        backup
+    else
+        main
+    fi
+}
 
-if [[ $input == 1 || $input == "" ]]; then
-    default
-elif [ $input == 2 ]; then
-    custom
-elif [ $input == 3 ]; then
-    minimal
-elif [ $input == 4 ]; then
-    deleting
-elif [ $input == 5 ]; then 
-    backup
-elif [ $input == 0 ]; then
-    echo "Goodbye, $USER."
-else
-    echo "Oops, something went wrong, try again"
-fi
+function main() {
+    echo "Dotfiles install wizard"
+    echo "__________________________"
+    echo "Pick what you want to do:"
+    echo "[1] Default install"
+    echo "[2] Custom install"
+    echo "[3] Minimal install"
+    echo "[4] Delete all old configs"
+    echo "[5] Make backup"
+    echo "[0] Exit"
+    read -p "By default - 1: " input
+
+    if [[ $input == 1 || $input == "" ]]; then
+        default
+    elif [ $input == 2 ]; then
+        custom
+    elif [ $input == 3 ]; then
+        minimal
+    elif [ $input == 4 ]; then
+        deleting
+    elif [ $input == 5 ]; then 
+        backup
+    elif [ $input == 0 ]; then
+        echo "Goodbye, $USER."
+    else
+        echo "Oops, something went wrong, try again"
+    fi
+}
+
+init $1
