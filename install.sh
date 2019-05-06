@@ -72,12 +72,13 @@ function custom() {
 }
 
 function minimal() {
-    install ~/dotfiles/home/.zshrc ~/.zshrc zshrc
+    install ~/dotfiles/home/.bashrc ~/.bashrc .bashrc
     install ~/dotfiles/vim/.vimrc ~/.vimrc vimrc
 }
 
 function init() {
     if [[ $1 == "-d" || $1 == "--default" ]]; then
+        backup
         default
     elif [[ $1 == "-c" || $1 == "--custom" ]]; then
         custom
