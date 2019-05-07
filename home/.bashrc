@@ -30,7 +30,8 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    #xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -80,6 +81,8 @@ fi
 # Alias definitions.
 alias ll='ls -l'
 alias la='ls -al'
+
+alias py='python3'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
