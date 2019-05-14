@@ -72,7 +72,9 @@ function custom() {
 }
 
 function minimal() {
+    delete ~/.bashrc .bashrc
     install ~/dotfiles/home/.bashrc ~/.bashrc .bashrc
+    delete ~/.vimrc .vimrc
     install ~/dotfiles/vim/.vimrc ~/.vimrc vimrc
 }
 
