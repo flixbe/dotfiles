@@ -78,6 +78,10 @@ function minimal() {
     install ~/dotfiles/vim/.vimrc ~/.vimrc vimrc
 }
 
+function help() {
+    echo "Show this message and exit."
+}
+
 function init() {
     if [[ $1 == "-d" || $1 == "--default" ]]; then
         backup
@@ -90,6 +94,8 @@ function init() {
         deleting
     elif [[ $1 == "-b" || $1 == "--backup" ]]; then
         backup
+    elif [[ $1 == "-h" || $1 == "--help" ]]; then
+        help
     else
         main
     fi
@@ -104,6 +110,7 @@ function main() {
     echo "[3] Minimal install"
     echo "[4] Delete all old configs"
     echo "[5] Make backup"
+    echo "[6] Show help message"
     echo "[0] Exit"
     read -p "By default - 1: " input
 
@@ -117,6 +124,8 @@ function main() {
         deleting
     elif [ $input == 5 ]; then 
         backup
+    elif [ $input == 6 ]; then
+        help
     elif [ $input == 0 ]; then
         echo "Goodbye, $USER."
     else
