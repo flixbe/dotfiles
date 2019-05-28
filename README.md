@@ -3,9 +3,13 @@
 
 # Installing
 ```
+cd ~/
+git clone https://github.com/flixbe/dotfiles.git
+cd dotfiles/
 make install
 ./install
 ```
+
 # Options
 ```
 Usage: 
